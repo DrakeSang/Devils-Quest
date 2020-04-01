@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/header}"></th:block>
+</header>
+<main>
+    <div class="container">
+        <div class="wrapper">
+            <div class="title">
+                <h2>Log In</h2>
+            </div>
+    
+            <form th:action="@{/users/login}" method="post" class="login">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+
+                <th:block th:if="${session.wrongCredentials != null}">
+                    <div class="error">[[${session.wrongCredentials}]]</div>
+                </th:block>
+
+                <p class="choice">
+                    Not yet a member? <a href="@{/users/register}">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

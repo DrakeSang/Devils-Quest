@@ -22,7 +22,7 @@
                 </ul>
             </nav>
     
-            <a href="*" class="header_logo">
+            <a th:href="@{/}" class="header_logo">
                 <img th:src="@{/img/logo/logo.png}" alt="Game logo">
             </a>
     
@@ -33,10 +33,10 @@
             <nav class="header_actions">
                 <ul>
                     <li>
-                        <a th:href="@{*}">Login</a>
+                        <a th:href="@{/users/login}">Log in</a>
                     </li>
                     <li>
-                        <a th:href="@{*}">Register</a>
+                        <a th:href="@{/users/register}">Register</a>
                     </li>
                 </ul>
             </nav>
