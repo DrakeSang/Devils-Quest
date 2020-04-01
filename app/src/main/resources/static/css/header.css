@@ -1,0 +1,219 @@
+/* Mobile styling */
+
+* {
+    box-sizing: border-box;
+}
+
+.header_overlay {
+    position: fixed; /* The element is removed from the flow of the document like absolutely positioned elements. In fact they behave almost the same, only fixed positioned elements are always relative to the document, not any particular parent, and are unaffected by scrolling. */
+    top: 0; /*We set top to eb zero so it will stay at top*/
+    width: 100%; 
+    z-index: 1000; /* I need the z index because, when user opens the nav bar or the user actions i want them to be 
+    to be stacked on the another elements and not to loose some of the elements.The z-index property specifies the stack order of an element. */
+}
+
+header.navigation_header {
+    width: 100%;
+    background-color: #262626;
+    padding: 10px;
+    display: flex; /* The elements in the navigation header will be displayed on one line */
+    justify-content: space-between; /* We will leave space between them */
+    position: relative; /* Position to relative so the childs with absolute position will be positioned against the parent */
+}
+
+.nav_menu_toggle,
+.user_actions_toggle {
+    font-size: 40px;
+    cursor: pointer;
+    align-self: center; /* The elements will be centered against their parents*/
+}
+
+.fa {
+    color: #2196f3;
+}
+
+.header_logo img {
+    width: auto;
+    height: 40px;
+}
+
+.header_nav {
+    width: 100%;
+    background: #333;
+    position: absolute; /* The element will be positioned agaisnt hsi parent, which has relative position.*/
+    top: 100%; /* From top we take 100 percents so the navigation will be showed under the navigation header on mobile devices*/
+    left: -100%; /* We set left to be negative so it will be hidden at the beginning */
+    transition: all 2s ease-in 1s; /* Smooth trasnison when showing: transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay]; */
+}
+
+.header_nav ul,
+.header_actions ul {
+    text-align: center; /* The text to be centered */
+    list-style-type: none; 
+}
+
+.header_nav ul li a,
+.header_actions ul li a {
+    display: block;
+    padding: 10px 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    font-family: Catamaran;
+    font-size: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, .5);
+}
+
+header nav ul li a:hover,
+.header_actions a:hover{
+    background: #2196f3;
+}
+
+.header_nav.show,
+.header_actions.show {
+    left: 0;  /* When we wan to show the header nav or the header actions we need to set the left to zero. */
+}
+
+.header_actions {
+    width: 100%;
+    background: #333;
+    position: absolute;
+    top: 100%;
+    left: 100%; /* We need to set the header actions(Login, Register) to left 100 procents to hide them. */
+    transition: all 2s ease-in 1s;
+}
+
+/* Tablet Styling */
+
+@media only screen and (min-width: 768px) {
+    .nav_menu_toggle{
+        display: none;
+    }
+
+    .header_logo img {
+        width: 75px;
+    }
+
+    .header_nav ul li:not(:first-child) {
+        margin-left: 3px;
+    }
+
+    .header_nav {
+        width: fit-content; /* On tablet we cna show the navigation header and we set width to fit the content. */
+        position: static; /* Default value. Elements render in order, as they appear in the document flow. */
+        top: 0;
+        transition: none;  
+        background: none;   
+    }
+
+    .header_nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+    }
+    
+    .header_nav ul li {
+        height: 100%;
+        display: table !important; /* Every li of the ul will be displayed as table. */
+    }
+
+    .header_nav ul li a {
+        display: table-cell; /* Every a of the li will be displayed as table-cell. */
+        vertical-align: middle; /* This way i can set in vertically centered in the table-cell */
+        height: 100%;
+        padding: 0 10px;
+        font-size: 18px;
+        border: none;
+    }
+
+    .header_logo {
+        order: 1; /* Using order property so i can set the order of showed elements; first will be the logo, then the navigation header and then the user actions */
+    }
+
+    .header_nav {
+        order: 2;
+    }
+
+    .user_actions_toggle {
+        order: 3;
+    }
+}
+
+/* Laptop styling */
+
+@media only screen and (min-width: 1000px) {
+    .user_actions_toggle {
+        display: none;
+    }
+
+    .header_logo {
+        display: block !important;
+    }
+
+    
+    .header_actions ul li:not(:first-child) {
+        margin-left: 3px;
+    }
+
+    .header_actions {
+        width: fit-content;  
+        position: static;
+        top: 0;
+        transition: none;  
+        background: none;
+    }
+
+    .header_actions ul {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+    }
+
+    .header_actions ul li {
+        height: 100%;
+        display: table !important; 
+    }
+
+    .header_actions ul li a {
+        display: table-cell;
+        vertical-align: middle;
+        height: 100%;
+        padding: 0 10px;
+        font-size: 17px;
+        border: none;
+    }
+
+    .header_logo {
+        order: 1;
+    }
+
+    .header_nav {
+        order: 2;
+    }
+
+    .header_actions {
+        order: 3;
+    }
+}
+
+/* Laptop with bigegr resolution */
+
+@media only screen and (min-width: 1440px) {
+    .header_nav ul li a,
+    .header-actions ul li a {
+        font-size : 22px;
+    }
+
+    .header_logo img {
+        width: auto;
+        height: 70px;
+    } 
+}
+
+@media only screen and (min-width: 1920px){
+    .header_nav ul li a,
+    .header_actions ul li a {
+        font-size: 30px;
+        padding: 0 20px;
+    }
+}

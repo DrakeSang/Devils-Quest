@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/index/slider.css}">
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/header}"/>
+</header>
+<main>
+    <div class="welcome_message">
+        <p>
+            Welcome to Victorious Arena. 
+        <br>
+            You will find many strong enemies but only the best will survive.
+        </p>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img th:src="@{/img/slider/pic1.jpg}">
+        </div>
+
+        <div class="mySlides fade">
+            <img th:src="@{/img/slider/pic2.jpg}">
+        </div>
+
+        <div class="mySlides fade">
+            <img th:src="@{/img/slider/pic4.jpg}">
+        </div>
+
+        <div class="mySlides fade">
+            <img th:src="@{/img/slider/pic3.jpg}">
+        </div>
+
+        <div class="mySlides fade">
+            <img th:src="@{/img/slider/pic5.jpg}">
+        </div>
+
+        <a class="prev" onclick="arrowAction(-1)">&#10094;</a>
+        <a class="next" onclick="arrowAction(1)">&#10095;</a>
+    </div> 
+    
+    <br>
+    
+    <div style="text-align:center">
+        <span class="dot" onclick="dotAction(1)"></span>
+        <span class="dot" onclick="dotAction(2)"></span>
+        <span class="dot" onclick="dotAction(3)"></span>
+        <span class="dot" onclick="dotAction(4)"></span>
+        <span class="dot" onclick="dotAction(5)"></span>
+    </div>
+</main>
+
+<script type="text/javascript" th:src="@{/js/index/slider.js}"></script> 
+
+</body>
+</html>

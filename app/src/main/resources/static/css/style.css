@@ -1,0 +1,6 @@
+body {
+    background-image: url('../img/arena.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}

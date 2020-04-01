@@ -1,0 +1,45 @@
+<th:block th:fragment>
+    <div class="header_overlay">
+        <header class="navigation_header">
+            <div class="nav_menu_toggle">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    
+            <nav class="header_nav">
+                <ul>
+                    <li>
+                        <a th:href="@{*}">Game Guide</a>
+                    </li>
+                    <li>
+                        <a th:href="@{*}">Rankings</a>
+                    </li>
+                    <li>
+                        <a th:href="@{*}">Media</a>
+                    </li>
+                    <li>
+                        <a th:href="@{*}">Contact us</a>
+                    </li>
+                </ul>
+            </nav>
+    
+            <a href="*" class="header_logo">
+                <img th:src="@{/img/logo/logo.png}" alt="Game logo">
+            </a>
+    
+            <div class="user_actions_toggle">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+    
+            <nav class="header_actions">
+                <ul>
+                    <li>
+                        <a th:href="@{*}">Login</a>
+                    </li>
+                    <li>
+                        <a th:href="@{*}">Register</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+</th:block>
