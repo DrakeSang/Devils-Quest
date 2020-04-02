@@ -3,23 +3,31 @@ package com.DevilsQuest.app.validation.auth.impl;
 import com.DevilsQuest.app.data.models.services.auth.RegisterUserServiceModel;
 import com.DevilsQuest.app.data.repositories.UsersRepository;
 import com.DevilsQuest.app.validation.auth.AuthValidationService;
+import com.DevilsQuest.app.validation.auth.ProfilePicValidationService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class AuthValidationServiceImpl implements AuthValidationService {
     private final UsersRepository usersRepository;
 
-    public AuthValidationServiceImpl(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
+    private final ProfilePicValidationService profilePicValidationService;
+
+    public AuthValidationServiceImpl(
+        UsersRepository usersRepository, 
+        ProfilePicValidationService profilePicValidationService) {
+            this.usersRepository = usersRepository;
+            this.profilePicValidationService = profilePicValidationService;
     }
 
     @Override
-    public boolean isValid(RegisterUserServiceModel user, ModelAndView modelAndView) {
+    public boolean isValid(RegisterUserServiceModel user, MultipartFile multipartFile, ModelAndView modelAndView) {
         return
                 isUsernameFree(user.getUsername(), modelAndView) &&
                 isEmailFree(user.getEmail(), modelAndView) &&
+                profilePicValidationService.isValid(multipartFile, modelAndView) &&
                 arePasswordsEquals(user.getPassword(), user.getConfirmPassword(), modelAndView);
     }
 

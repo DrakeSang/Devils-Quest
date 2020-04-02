@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -45,7 +46,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // starting to authorize requests
                 .antMatchers("/", "/index") 
                 .permitAll() // on end point "/" permitting all requests
-            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**")
+            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**")
                 .permitAll() // permitting all static files(css, js, images) to be accessable
             .antMatchers("/users/register") // on end point "/users/register" permitting all requests
                 .permitAll()
@@ -67,16 +68,25 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
+    /**
+     * Setting globally the authentication to use the {@link UsersService}, which implements {@link 
+     * UserDetailsService} and the {@link PasswordEncoder} for the password.
+     * 
+     * @param auth object of type {@link AuthenticationManagerBuilder} 
+     * @throws Exception
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        /**
-         * Setting globally the authentication to use the {@link UsersService}, which implements {@link UserDetailsService} and the {@link PasswordEncoder} for the password.
-         */
         auth
                 .userDetailsService(usersService)
                 .passwordEncoder(passwordEncoder);
     }
 
+    /**
+     * Added the csrf token 
+     * 
+     * @return object of type {@link HttpSessionCsrfTokenRepository} 
+     */
     private CsrfTokenRepository csrfTokenRepository() {
         httpSessionCsrfTokenRepository.setSessionAttributeName("_csrf");
         return httpSessionCsrfTokenRepository;

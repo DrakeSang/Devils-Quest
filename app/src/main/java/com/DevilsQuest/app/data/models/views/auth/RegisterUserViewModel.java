@@ -5,12 +5,16 @@ import javax.validation.constraints.Size;
 
 import com.DevilsQuest.app.validation.auth.custom.Email;
 
-public class RegisterUserModel {
+import org.springframework.web.multipart.MultipartFile;
+
+public class RegisterUserViewModel {
     @Size(min = 3, max = 15, message = "Username should be between 3 and 15.")
     private String username;
 
     @Email
     private String email;
+
+    private MultipartFile image;
     
     @NotEmpty(message = "The password is mandatory.")
     private String password;
@@ -18,7 +22,7 @@ public class RegisterUserModel {
     @NotEmpty(message = "The confirm password is mandatory.")
     private String confirmPassword;
 
-    public RegisterUserModel() {
+    public RegisterUserViewModel() {
     }
 
     public String getUsername() {
@@ -35,6 +39,14 @@ public class RegisterUserModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public MultipartFile getImage() {
+        return this.image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public String getPassword() {

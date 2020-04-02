@@ -20,7 +20,7 @@
                 <h2>Register</h2>
             </div>
     
-            <form th:action="@{/users/register}" th:object="${userRegisterModel}" method="post" class="register">
+            <form th:action="@{/users/register}" th:object="${userRegisterModel}" method="post" class="register" enctype="multipart/form-data">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" name="username" th:field="*{username}"/>
@@ -43,6 +43,18 @@
 
                     <th:block th:if="${existedEmail != null}">
                         <div th:text="${existedEmail}" class="error"></div>
+                    </th:block>
+                </div>
+                <div class="input-group">
+                    <label for="image">Profile pic</label>
+                    <input type="file" class="form-control" id="image" name="image"/>
+
+                    <th:block th:if="${wrongPictureSize != null}">
+                        <div th:text="${wrongPictureSize}" class="error"></div>
+                    </th:block>
+
+                    <th:block th:if="${invalidExtension != null}">
+                        <div th:text="${invalidExtension}" class="error"></div>
                     </th:block>
                 </div>
                 <div class="input-group">

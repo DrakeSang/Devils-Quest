@@ -23,12 +23,10 @@ public class UsersServiceImpl implements UsersService {
     }
 
     /**
-     * This methods comes from spring security. When you implement some class
-     * {@link UsersService} which implements {@link UserDetailsService} you need to
-     * override this method. It triggers every time a user tries to login and you
-     * set the username, password and authorities. That way in the principal you
-     * will have this after successfull login. DO not forget to insert roles in your
-     * db.
+     * This methods comes from spring security. When you implement some class {@link UsersService} which implements
+     * {@link UserDetailsService} you need to override this method. It triggers every time a user tries to login and
+     * you set the username, password and authorities. That way in the principal you will have this after successfull 
+     * login. DO not forget to insert roles in your db.
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

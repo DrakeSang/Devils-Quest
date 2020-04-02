@@ -1,18 +1,25 @@
 package com.DevilsQuest.app.data.models.services.auth;
 
-/**
- * RegisterUserServiceModel
- */
 public class RegisterUserServiceModel {
     private String username;
 
     private String email;
+
+    private String imageUrl;
 
     private String password;
 
     private String confirmPassword;    
 
     public RegisterUserServiceModel() {
+    }
+
+    public RegisterUserServiceModel(String username, String email, String imageUrl, String password, String confirmPassword) {
+        this.username = username;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
     public String getUsername() {
@@ -29,6 +36,14 @@ public class RegisterUserServiceModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getPassword() {

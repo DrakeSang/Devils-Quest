@@ -11,9 +11,6 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
-/**
- * Handler for wrong authentication.
- */
 @Component
 public class AuthFailureHandler implements AuthenticationFailureHandler {
     private final RedirectStrategy redirectStrategy;
