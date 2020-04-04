@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsersRepository extends JpaRepository<User, Long> {
     /**
-     * Returns {@link Optional} of  object {@link User} by given username 
+     * Returns {@link Optional} of object {@link User} by given username 
      * 
      * @param username the username to search for
      * @return {@link Optional} of  object {@link User}

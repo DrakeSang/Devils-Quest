@@ -34,7 +34,7 @@ header.navigation_header {
 
 .header_logo img {
     width: auto;
-    height: 40px;
+    height: 50px;
 }
 
 .header_nav {
@@ -91,7 +91,7 @@ header nav ul li a:hover,
     }
 
     .header_logo img {
-        width: 75px;
+        width: 70px;
     }
 
     .header_nav ul li:not(:first-child) {
@@ -99,11 +99,15 @@ header nav ul li a:hover,
     }
 
     .header_nav {
+        order: 2;
         width: fit-content; /* On tablet we cna show the navigation header and we set width to fit the content. */
-        position: static; /* Default value. Elements render in order, as they appear in the document flow. */
-        top: 0;
+        position: absolute; /* On tablet setting the position fo the header nav to eb absolute. It will look for the first element with position relative, which in my case is the navigation header */
+        left: 50%; /* from left we move it 50%. So in the container the header nav will be moved 50% from the left side of his parent 50% */
+        top: 0; /* from top we mvoe it 0 */
+        transform: translateX(-50%); /* We need to center it so we need to move it backwards on the x abscissa 50%. imagine it it goes from the rights side of his parent 50%. That is why it will be centered and i use negative value. */
         transition: none;  
-        background: none;   
+        background: none;
+        height: 100%;  
     }
 
     .header_nav ul {
@@ -121,17 +125,13 @@ header nav ul li a:hover,
         display: table-cell; /* Every a of the li will be displayed as table-cell. */
         vertical-align: middle; /* This way i can set in vertically centered in the table-cell */
         height: 100%;
-        padding: 0 10px;
-        font-size: 18px;
+        padding: 0 5px;
+        font-size: 20px;
         border: none;
     }
 
     .header_logo {
         order: 1; /* Using order property so i can set the order of showed elements; first will be the logo, then the navigation header and then the user actions */
-    }
-
-    .header_nav {
-        order: 2;
     }
 
     .user_actions_toggle {
@@ -142,14 +142,32 @@ header nav ul li a:hover,
 /* Laptop styling */
 
 @media only screen and (min-width: 1000px) {
-    .user_actions_toggle {
-        display: none;
+    .header_nav {
+        position: static;
+        transform: unset;
+        order: 1;
+        height: 63px;
     }
 
     .header_logo {
-        display: block !important;
+        order: 2;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
+    .header_logo img {
+        width: 90px;
+        height: 60px;
+    }
+
+    .header_actions {
+        order: 3;
+    }
+
+    .user_actions_toggle {
+        display: none;
+    }
     
     .header_actions ul li:not(:first-child) {
         margin-left: 3px;
@@ -178,35 +196,22 @@ header nav ul li a:hover,
         display: table-cell;
         vertical-align: middle;
         height: 100%;
-        padding: 0 10px;
-        font-size: 17px;
+        padding: 0 5px;
+        font-size: 20px;
         border: none;
-    }
-
-    .header_logo {
-        order: 1;
-    }
-
-    .header_nav {
-        order: 2;
-    }
-
-    .header_actions {
-        order: 3;
     }
 }
 
-/* Laptop with bigegr resolution */
+/* Laptop with bigger resolution */
 
 @media only screen and (min-width: 1440px) {
     .header_nav ul li a,
-    .header-actions ul li a {
-        font-size : 22px;
+    .header_actions ul li a {
+        font-size : 25px;
     }
 
     .header_logo img {
         width: auto;
-        height: 70px;
     } 
 }
 

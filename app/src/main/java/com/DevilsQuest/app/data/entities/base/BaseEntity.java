@@ -11,7 +11,6 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     public BaseEntity() {
     }
 
@@ -22,5 +21,4 @@ public class BaseEntity {
     public void setId(long id) {
         this.id = id;
     }
-
 }

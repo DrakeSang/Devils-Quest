@@ -1,6 +1,7 @@
 package com.DevilsQuest.app.data.entities.auth;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.DevilsQuest.app.data.entities.base.BaseEntity;
+import com.DevilsQuest.app.data.entities.heroes.Hero;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,12 +41,17 @@ public class User extends BaseEntity implements UserDetails {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
-    private Set<Role> authorities;
+    private List<Role> authorities;
+
+    @OneToMany(mappedBy = "user")
+    private List<Hero> heroes;
 
     public User() {
+        this.authorities = new ArrayList<>();
+        this.heroes = new ArrayList<>();
     }
 
-    public String getUsername() {
+	public String getUsername() {
         return this.username;
     }
 
@@ -75,12 +83,24 @@ public class User extends BaseEntity implements UserDetails {
         this.imageUrl = imageUrl;
     }
 
-    public Set<Role> getAuthorities() {
+    public List<Role> getAuthorities() {
         return this.authorities;
     }
 
-    public void setAuthorities(Set<Role> authorities) {
+    public void setAllAuthorties(List<Role> authorities) {
         this.authorities = authorities;
+    }
+
+    public void setSingleAuthority(Role role) {
+        this.authorities.add(role);
+    }
+
+    public List<Hero> getHeroes() {
+        return this.heroes;
+    }
+
+    public void addHero(Hero hero) {
+        this.heroes.add(hero);
     }
 
     @Override

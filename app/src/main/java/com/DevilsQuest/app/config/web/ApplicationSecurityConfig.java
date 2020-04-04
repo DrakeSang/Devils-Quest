@@ -28,7 +28,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     
     private final HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository;
 
-
     public ApplicationSecurityConfig(AuthenticationSuccessHandler authSuccessHandler, AuthenticationFailureHandler authFailureHandler, UsersService usersService, PasswordEncoder passwordEncoder, HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository) {
         this.authSuccessHandler = authSuccessHandler;
         this.authFailureHandler = authFailureHandler;
@@ -52,6 +51,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
             .antMatchers("/users/login") // on end point "/users/login" permitting all requests
                 .permitAll()
+            .antMatchers("/api/races/get-races-by-faction/Horde")
+                .permitAll()
+            .antMatchers("/api/races/get-races-by-faction/Alliance")
+                .permitAll()
             .anyRequest()
                 .authenticated() // any another request should be authenticated
             .and()
@@ -60,12 +63,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username") // here should be the name of the html tag. If you login with email here should be email
                 .passwordParameter("password") // here should be the name of the html tag.
                 .successHandler(authSuccessHandler) // setting the handler on successfull authentication
-                .failureHandler(authFailureHandler) // setting the handler on unsuccessfull authentication
-            .and()
-                .logout() // seting the logout
-                .logoutUrl("/users/logout") // setting the logout url. Here it should be teh same liek on the html link(href) or form(button submit). You do not need to create a method in the controller on post cause the spring security will handle it for you
-                .logoutSuccessUrl("/users/login") // on successfull logout it redirects to login page
-                .permitAll();
+                .failureHandler(authFailureHandler); // setting the handler for unsuccessfull authentication
     }
 
     /**
@@ -78,8 +76,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(usersService)
-                .passwordEncoder(passwordEncoder);
+            .userDetailsService(usersService)
+            .passwordEncoder(passwordEncoder);
     }
 
     /**

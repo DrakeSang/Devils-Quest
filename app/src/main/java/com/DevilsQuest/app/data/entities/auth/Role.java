@@ -1,9 +1,11 @@
 package com.DevilsQuest.app.data.entities.auth;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
 
 import com.DevilsQuest.app.data.entities.base.BaseEntity;
 
@@ -14,10 +16,11 @@ import org.springframework.security.core.GrantedAuthority;
 public class Role extends BaseEntity implements GrantedAuthority {
     private static final long serialVersionUID = 1L;
     
+    @Column
     private String authority;
 
     @ManyToMany(mappedBy = "authorities")
-    private Set<User> users;  
+    private List<User> users;  
 
     public Role() {
     }
@@ -34,11 +37,11 @@ public class Role extends BaseEntity implements GrantedAuthority {
         this.authority = authority;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return this.users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

@@ -24,7 +24,6 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             AuthenticationException exception) throws IOException, ServletException {
-                httpServletRequest.getSession().setAttribute("wrongCredentials", "Your credentials are wrong.");
                 redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/users/login?error=true");
     }
 }

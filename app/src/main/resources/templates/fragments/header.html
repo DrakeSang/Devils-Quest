@@ -4,7 +4,7 @@
             <div class="nav_menu_toggle">
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </div>
-    
+            
             <nav class="header_nav">
                 <ul>
                     <li>
@@ -17,27 +17,49 @@
                         <a th:href="@{*}">Media</a>
                     </li>
                     <li>
-                        <a th:href="@{*}">Contact us</a>
+                        <a th:href="@{*}">Contacts</a>
                     </li>
                 </ul>
             </nav>
-    
-            <a th:href="@{/}" class="header_logo">
-                <img th:src="@{https://res.cloudinary.com/emicha/image/upload/v1585843358/DevilsQuest/logo_obu23z.png}" alt="Game logo">
-            </a>
-    
+
+            <div class="header_logo">
+                <a th:href="@{/}">
+                    <img th:src="@{https://res.cloudinary.com/emicha/image/upload/v1585843358/DevilsQuest/logo_obu23z.png}" alt="Game logo">
+                </a>
+            </div>
+
             <div class="user_actions_toggle">
                 <i class="fa fa-user" aria-hidden="true"></i>
             </div>
-    
+
             <nav class="header_actions">
                 <ul>
-                    <li>
-                        <a th:href="@{/users/login}">Log in</a>
-                    </li>
-                    <li>
-                        <a th:href="@{/users/register}">Register</a>
-                    </li>
+                    <th:block th:if="${session.username == null}">
+                        <li>
+                            <a th:href="@{/users/login}">Log in</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/users/register}">Register</a>
+                        </li>
+                    </th:block>
+                    <th:block th:unless="${session.username == null}">
+                        <th:block th:if="${session.heroesCount == null}">
+                            <li>
+                                <a th:href="@{/heroes/create}">Create hero</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/users/logout}">Log out</a>
+                            </li>
+                        </th:block>
+                        <th:block th:unless="${session.heroesCount == null}">
+                            <li>
+                                <a th:href="@{/heroes/create}">Create hero</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/users/logout}">Log out</a>
+                            </li>
+                        </th:block>
+                    </th:block>
                 </ul>
             </nav>
         </header>

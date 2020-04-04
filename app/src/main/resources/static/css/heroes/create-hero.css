@@ -1,0 +1,164 @@
+/* Mobile styling */
+
+.container {
+    padding: 15px;
+}
+
+.title, .caption, .factions, .races, .genders, .classes, .available-factions, .available-races, 
+.available-genders, .available-classes, .label, .available-hero-name-length, .hero-name-input, .hero-overview textarea {
+    color: #d5c8af;
+    font-family: Catamaran;
+    font-size: 25px;
+    text-align: center;
+    line-height: 35px;
+    padding: 10px;
+ }
+
+ .available-factions select, .available-races select, .available-genders select, .available-classes select, 
+ .available-hero-name-length select {
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #d5c8af;
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.hero-name {
+    text-align: center;
+}
+
+.hero-name input {
+    width:100%;
+}
+
+textarea {
+    overflow:auto;
+    resize:none;
+    width: 100%;
+    height: 250px;
+}
+
+.btn {
+    display: block;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    background: #5F9EA0;
+    border: none;
+    margin: 15px auto;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+    .available-factions select, .available-races select, .available-genders select, .available-classes select,
+    .available-hero-name-length select {
+        font-size: 25px;
+    }
+
+    .hero-image-container {
+        padding: 0px;
+        width: 50%;
+        margin: 0 auto;
+    }
+    
+    .hero-name input {
+        width:50%;
+    }
+
+    .hero-overview {
+        text-align: center;
+    }
+
+    textarea {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .container {
+        display: flex;
+    }
+
+    .box {
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .box:first-child > .hero-specs { 
+        margin-right: auto; 
+    }
+
+    .box:last-child  > .hero-details { 
+        margin-left: auto;  
+    }
+
+    .hero-image-container {
+        width: 80%;
+    }
+
+    .hero-image-container img {
+        height: 250px;
+    }
+
+    .hero-name input {
+        width:70%;
+    }
+
+    .hero-overview {
+        text-align: unset;
+    }
+
+    textarea {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .title, .caption, .factions, .races, .genders, .classes, .available-factions, .available-races, 
+    .available-genders, .available-classes, .label, .available-hero-name-length, .hero-name-input, .hero-overview textarea {
+        font-size: 35px;
+        line-height: 45px;
+    }
+    
+    .races {
+        display: table;
+        width: 100%;
+    }
+
+    .races > .caption:first-child {
+        display: table-caption;
+    }
+
+    .faction-wrapper, .race-wrapper {
+        display: table-cell;
+        width: 50%;
+    }
+
+    .races, .genders, .classes {
+        padding: 10px;
+    }
+
+    .hero-image-container img {
+        height: 300px;
+    }
+
+    textarea {
+        height: 500px;
+    }
+
+    .btn {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .hero-image-container img {
+        height: 350px;
+    }
+}

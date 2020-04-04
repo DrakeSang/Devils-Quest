@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/messages/messages.css}">
+    <link rel="stylesheet" th:href="@{/css/heroes/create-hero.css}">
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/header}"></th:block>
+</header>
+<main>
+    <div class="welcome_message">
+        <p>
+            Welcome to our hero creation process. 
+        <br>
+            You can choose your hero class, race, name and see a short overview of the class.
+        </p>
+    </div>
+
+    <form th:action="@{/heroes/create}" th:object="${heroCreateViewModel}" method="post">
+        <div class="container">
+            <div class="box">
+                <h3 class="title">Hero specs:</h3>
+                <div class="hero-specs">
+                    <div class="races">
+                        <h1 class="caption">Choose your faction and race</h1>
+                        <div class="faction-wrapper">
+                            <div class="factions">
+                                <label for="factions">Factions:</label>
+                            </div>
+                            <div class="available-factions">
+                                <select class="whichFaction" id="factions" name="faction">
+                                    <option value="" selected disabled>Select your faction first:</option>
+                                    <option th:each="faction : ${factions}" th:value="${faction}" th:text="${faction}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="race-wrapper">
+                            <div class="races">
+                                <label for="races">Races:</label>
+                            </div>
+                            <div class="available-races">
+                                <select class="whichRace" id="races" name="race" disabled>
+                                    <option value="">Select your race:</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <th:block th:if="${#fields.hasErrors('faction')}">
+                        <div th:errors="*{faction}" class="error"></div>
+                    </th:block>
+
+                    <th:block th:if="${#fields.hasErrors('race')}">
+                        <div th:errors="*{race}" class="error"></div>
+                    </th:block>
+            
+                    <div class="genders">                        
+                        <div class="genders">
+                            <label for="genders">Choose your gender:</label>
+                        </div>
+                        <div class="available-genders">
+                            <select id="genders" name="gender">
+                                <option value="" selected disabled>Genders:</option>
+                                <option th:each="gender : ${genders}" th:value="${gender}" th:text="${gender}"></option>
+                            </select>
+                        </div>
+
+                        <th:block th:if="${#fields.hasErrors('gender')}">
+                            <div th:errors="*{gender}" class="error"></div>
+                        </th:block>
+                    </div>
+            
+                    <div class="classes">
+                        <div class="classes">
+                            <label for="classes">Choose your class:</label>
+                        </div>
+                        <div class="available-classes">
+                            <select class="whichClass" id="classes" name="characterClass">
+                                <option value="" selected disabled>Classes:</option>
+                                <option th:each="class : ${classes}" th:value="${class}" th:text="${class}"></option>
+                            </select>
+                        </div>
+
+                        <th:block th:if="${#fields.hasErrors('characterClass')}">
+                            <div th:errors="*{characterClass}" class="error"></div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="box">
+                <h3 class="title">Hero details:</h3>
+                <div class="hero-details">
+                    <div class="hero-image-container">
+                        <img />
+                    </div>
+                    <div class="hero-name">
+                        <div class="available-hero-name-length">
+                            <select class="hero-name-length" id="num-chars">
+                                <option value="3" selected>3 Letters Hero Name</option>
+                                <option value="4">4 Letters Hero Name</option>
+                                <option value="5">5 Letters Hero Name</option>
+                            </select>
+                        </div>
+                        <input class="hero-name-input" type="text" id="name" name="name"/>
+                        <input class="btn" type="button" id="randomize-hero-name" name="name" value="Randomize"/>
+
+                        <th:block th:if="${#fields.hasErrors('name')}">
+                            <div th:errors="*{name}" class="error"></div>
+                        </th:block>
+
+                        <th:block th:if="${existedHeroName != null}">
+                            <div th:text="${existedHeroName}" class="error"></div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3 class="title">Hero overview:</h3>
+                <div class="hero-overview">
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+
+        <th:block th:if="${charactersCount != null}">
+            <div th:text="${charactersCount}" class="error"></div>
+        </th:block>
+
+        <div>
+            <button type="submit" class="btn">Create hero</button>
+        </div>
+    </form>
+</main>
+<script th:src="@{/js/heroes/create/create.js}" type="module"></script> 
+</body>
+</html>

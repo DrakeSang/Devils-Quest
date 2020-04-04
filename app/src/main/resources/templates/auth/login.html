@@ -6,7 +6,8 @@
 >
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/forms/form.css}">
+    <link rel="stylesheet" th:href="@{/css/messages/messages.css}">
 </head>
 <body>
 <header>
@@ -32,8 +33,8 @@
                     <button type="submit" class="btn">Login</button>
                 </div>
 
-                <th:block th:if="${session.wrongCredentials != null}">
-                    <div class="error">[[${session.wrongCredentials}]]</div>
+                <th:block th:if="${param.error != null}">
+                    <div class="error">Wrong credentials.</div>
                 </th:block>
 
                 <p class="choice">

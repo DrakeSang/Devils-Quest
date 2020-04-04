@@ -1,0 +1,48 @@
+/* Welcome message styling */
+
+.welcome_message {
+    padding: 10px;
+}
+
+.welcome_message p {
+    color: #d5c8af;
+    font-family: Catamaran;
+    font-size: 25px;
+    text-align: center;
+    line-height: 35px;
+}
+
+/* Error message styling */ 
+
+.error {
+    display: block;
+    color: red;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    font-family: Catamaran;
+}
+
+/* Choice message styling */
+.choice {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    font-family: Catamaran;
+}
+
+@media only screen and (min-width: 1440px){
+    .welcome_message p {
+        font-size: 35px;
+        line-height: 45px;
+    }
+    
+    .error {
+        font-size: 30px;
+    }
+
+    .choice {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}

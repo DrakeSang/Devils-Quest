@@ -6,12 +6,12 @@
 >
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/forms/form.css}">
+    <link rel="stylesheet" th:href="@{/css/messages/messages.css}">
 </head>
 <body>
 <header>
     <th:block th:include="~{fragments/header}"></th:block>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
 </header>
 <main>
     <div class="container">
@@ -20,7 +20,7 @@
                 <h2>Register</h2>
             </div>
     
-            <form th:action="@{/users/register}" th:object="${userRegisterModel}" method="post" class="register" enctype="multipart/form-data">
+            <form th:action="@{/users/register}" th:object="${userRegisterViewModel}" method="post" class="register" enctype="multipart/form-data">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" name="username" th:field="*{username}"/>
